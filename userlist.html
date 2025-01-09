@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00c6ff">
+  <title>User List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>User List</h1>
+
+    <!-- User List -->
+    <section>
+      <ul id="userListUl" aria-live="polite">
+        <!-- The user list will be dynamically populated here -->
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userListUl = document.getElementById("userListUl");
+
+      // Check if user is redirected from the login page
+      if (!localStorage.getItem('userList')) {
+        alert("No user data available!");
+        return;
+      }
+
+      const savedUserList = JSON.parse(localStorage.getItem("userList"));
+      if (savedUserList) {
+        savedUserList.forEach(user => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `${user.username} (${user.exp} EXP)`;
+          userListUl.appendChild(listItem);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

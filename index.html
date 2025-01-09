@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00c6ff">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <div class="container">
+    <h1>Login to EXP Tracker</h1>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <button type="button" id="loginBtn">Login with Google</button>
+    </form>
+
+    <div id="errorMessage" style="display: none; color: red;">
+      <p>Invalid email. Please try again.</p>
+    </div>
+  </div>
+
+  <script type="module">
+    // Import Firebase services from the modular SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // Firebase configuration object
+    const firebaseConfig = {
+      apiKey: "AIzaSyASYKH5UFyW7K3uqmuv76JO3w8ghOc7uwA",
+      authDomain: "web-auth-data.firebaseapp.com",
+      databaseURL: "https://web-auth-data-default-rtdb.firebaseio.com",
+      projectId: "web-auth-data",
+      storageBucket: "web-auth-data.firebasestorage.app",
+      messagingSenderId: "742137042829",
+      appId: "1:742137042829:web:15d762b84359a8f7ac4fc4"
+    };
+
+    // Initialize Firebase app
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Function to handle Google login
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log("Signed in as:", user.displayName);
+          
+          // Check if the user's email is one of the allowed emails
+          if (["vishal16980@gmail.com", "07.comer@gmail.com"].includes(user.email)) {
+            window.location.href = 'main.html';  // Redirect to the main page
+          } else {
+            window.location.href = 'userlist.html';  // Redirect to the user list page
+          }
+        })
+        .catch((error) => {
+          console.error("Error signing in with Google:", error);
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00c6ff">
+  <title>EXP Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>EXP Tracker</h1>
+    
+    <!-- Add Username Section -->
+    <section class="add-username">
+      <input id="usernameInput" type="text" placeholder="Enter Username" aria-label="Username Input">
+      <button id="addUsernameBtn" aria-label="Add Username">Add Username</button>
+    </section>
+
+    <!-- EXP Input Section -->
+    <section class="exp-section">
+      <label for="usernameSelect">Select Username:</label>
+      <select id="usernameSelect" aria-label="Username Select">
+        <option value="" disabled selected>Select Username</option>
+      </select>
+      <div class="exp-inputs">
+        <input id="hoursInput" type="number" placeholder="Hours" aria-label="Hours">
+        <input id="minutesInput" type="number" placeholder="Minutes" aria-label="Minutes">
+      </div>
+      <button id="confirmBtn" aria-label="Confirm EXP Entry">Confirm</button>
+
+      <div class="manual-exp">
+        <input id="manualExpInput" type="number" placeholder="Manual EXP" aria-label="Manual EXP">
+        <button id="addManualExpBtn" aria-label="Add Manual EXP">Add Manual EXP</button>
+      </div>
+    </section>
+
+    <!-- User List -->
+    <section>
+      <h2>User List</h2>
+      <ul id="userListUl" aria-live="polite">
+        <!-- The user list will be dynamically populated here -->
+      </ul>
+      <button id="removeSelectedBtn" aria-label="Remove Selected Users">Remove Selected</button>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
